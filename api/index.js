@@ -10,6 +10,10 @@ const PORT = 4000
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
+app.get("/",(req,res)=>{
+    res.send("hello world");
+})
+
 // Endpoint untuk mendapatkan data guru
 app.get("/sma",async (req,res)=>{
         let result = await excuteQuery({
@@ -121,3 +125,5 @@ app.get("/sma/desc", (req,res)=>{
 app.listen(PORT, ()=>{
     console.log(`Server is running on port : ${PORT}`)
 })
+
+module.exports = app
