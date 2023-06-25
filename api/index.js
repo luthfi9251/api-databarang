@@ -10,12 +10,12 @@ const PORT = 4000
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/",(req,res)=>{
+app.get("/api",(req,res)=>{
     res.send("hello world");
 })
 
 // Endpoint untuk mendapatkan data guru
-app.get("/sma",async (req,res)=>{
+app.get("/api/sma",async (req,res)=>{
         let result = await excuteQuery({
             query: "select * from guru",
         })
@@ -23,7 +23,7 @@ app.get("/sma",async (req,res)=>{
 })
 
 // Endpoint untuk menambah data guru
-app.post("/sma",async (req,res)=>{
+app.post("/api/sma",async (req,res)=>{
     let {nip, nama_guru, status, alamat,nomor} = req.body
     alamat = alamat || "semarang"
     nomor = nomor || "08135555"
@@ -46,7 +46,7 @@ app.post("/sma",async (req,res)=>{
 })
 
 // Endpoint untuk mengupdate data guru
-app.post("/sma/update",async (req,res) => {
+app.post("/api/sma/update",async (req,res) => {
     let {nip, nama_guru, status, alamat} = req.body
     alamat = alamat || "semarang"
 
@@ -64,7 +64,7 @@ app.post("/sma/update",async (req,res) => {
 })
 
 // Endpoint untuk menghapus data guru
-app.get("/sma/delete", async (req,res) => {
+app.get("/api/sma/delete", async (req,res) => {
     let nip = req.query.id
 
     if(!nip){
@@ -86,7 +86,7 @@ app.get("/sma/delete", async (req,res) => {
 })
 
 //untuk mendapatkan dokumentasi api
-app.get("/sma/desc", (req,res)=>{
+app.get("/api/sma/desc", (req,res)=>{
     let data = {
         author: "luthfi",
         get: {
